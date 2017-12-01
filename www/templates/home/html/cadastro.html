@@ -1,0 +1,119 @@
+<ion-view view-title="Cadastro">
+    <ion-content ng-class="expanded">
+      
+      <div class="hero no-header flat">
+            <div class="content">
+                <div class="app-icon"></div>
+                <h2>Cadastro para Acesso ao Sistema</h2>
+            </div>
+        </div>
+
+      <div class="row stable-bg">
+      <div class="col col-center">
+        <form name="vm.formUser" novalidate on-valid-submit="vm.cadastraUser(vm.user)"> 
+          
+          <div class="list card">
+
+            <div class="item item-divider">Dados do Consumidor</div> 
+
+            <label class="item item-input item-floating-label">
+              <span class="input-label">*Nome Completo</span>
+              <input type="text" class="form-control" ng-model="vm.user.name" placeholder="Nome Completo" required >
+            </label>
+            
+            <label class="item item-input item-floating-label">
+              <span class="input-label">*Email</span>
+              <input type="email" ng-model="vm.user.email" ng-pattern="/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i" placeholder="seuemail@provedor.com" required >     
+            </label>
+
+            <label class="item item-input item-floating-label">
+              <span class="input-label">*Telefone</span>
+              <input type="tel" ng-model="vm.user.telefone" placeholder="Telefone para contato" ui-br-phone-number required >
+            </label>
+
+            <label class="item item-input item-floating-label">
+              <span class="input-label">*RG</span>
+              <input type="tel" ng-model="vm.user.rg" placeholder="Seu Rg"  required >
+            </label>
+
+            <label class="item item-input item-floating-label">
+              <span class="input-label">*Orgão Emissor</span>
+              <input type="text" ng-model="vm.user.emissor" placeholder="Orgão Emissor. Exemplo: SSP-PB"  required >
+            </label>
+
+            <label class="item item-input item-floating-label">
+              <span class="input-label">*CPF</span>
+              <input placeholder="*CPF" name="cpf" type="tel" ng-model="vm.user.cpf" ui-br-cpf-mask>
+              <span class="error" ng-show="(vm.formUser.$error.cpf)">Cpf Invalido ou Incompleto.</span>
+            </label>
+
+          <div class="list card">
+            
+            <div class="item item-divider">
+                Informações de Endereço
+            </div>
+
+            <div class="item item-input-inset row">
+              <label class="col col-66 item-input-wrapper">
+                <input type="text" ng-model="vm.user.endereco.cep" placeholder="CEP" ui-br-cep-mask required>
+              </label>
+              <button type="button" ng-click="vm.buscarEndereco(vm.user.endereco.cep)" class="icon ion-search button button-small col col-33" ng-disabled="(vm.user.endereco.cep===undefined)">
+                {{(user.cep===undefined) ? "" : ""}}
+              </button>
+            </div>
+            <div class="row">
+
+              <div class="col col-100">
+                <label class="item item-input item-stacked-label">
+                  <span class="input-label">Rua</span>
+                  <input ng-model="vm.user.endereco.logradouro" placeholder="Logradouro" type="text" required>
+                </label>
+              </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                  <label class="item item-input item-stacked-label">
+                  <span class="input-label">Bairro</span>
+                  <input ng-model="vm.user.endereco.bairro" placeholder="Bairro" type="text">
+                </label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                  <label class="item item-input item-stacked-label">
+                    <span class="input-label">Complemento/Número</span>
+                    <input ng-model="vm.user.endereco.complemento" placeholder="Complemento/Número" type="text">
+                  </label>
+                </div>
+            </div>
+
+             <div class="row">
+                <div class="col">
+                  <label class="item item-input item-stacked-label">
+                    <span class="input-label">Cidade</span>
+                    <input name="localidade" ng-model="vm.user.endereco.localidade" placeholder="Cidade" type="text">
+                   </label>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col col-30">
+                  <label class="item item-input item-stacked-label">
+                    <span class="input-label">UF</span>
+                    <input ng-model="vm.user.endereco.uf" type="text" placeholder="UF" maxlenght="3">
+                  </label>
+                </div>
+              </div>
+
+           </div>
+        <button type="submit" class="button button-block button-positive" ng-disabled="vm.formUser.$invalid">
+          {{!(vm.formUser.$invalid) ? "Enviar Cadastro" : "Faltando Dados"}} 
+        </button>         
+        
+        </form>
+      </div>
+      </div>
+    </ion-content>
+</ion-view>

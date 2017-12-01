@@ -1,0 +1,21 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-calm">
+      <h1 class="title">Mudar Senha</h1>
+    </ion-header-bar>
+    <ion-content>
+      <div class="list">
+      	<label class="item item-input item-floating-label">
+           <span class="input-label">*Nova Senha</span>
+           <input type="tel" ng-model="vm.senha.pass1" placeholder="Senha" ui-br-phone-number required >
+        </label>
+      	<label class="item item-input item-stacked-label">
+              <span class="input-label">*Confirmação</span>
+               <input ng-model="vm.senha.pass2" placeholder="Confirmar" type="text" required>
+        </label>
+      </div>
+      <div class="button-bar">
+      	<button ng-click="vm.mudaSenha(vm.senha)" class="button button-small button-calm">Salvar</button>
+      	<button ng-click="vm.fechaModalSenha()" class="button button-small button-calm">Fechar</button>
+      </div>
+    </ion-content>
+ </ion-modal-view>   

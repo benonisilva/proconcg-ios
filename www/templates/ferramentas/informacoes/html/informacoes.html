@@ -1,0 +1,12 @@
+<ion-view view-title="Informações do Aplicativo">
+<ion-content>
+<ion-slide-box delegate-handle="sliderBan" show-pager="false" does-continue="true" auto-play="true" on-slide-changed="vm.slideChanged(index)" active-slide="vm.myActiveSlide">
+        <ion-slide ng-repeat="uri in vm.imagens()">
+            <img style="width: 100%;
+height: auto;" ng-src="{{uri}}">
+        </ion-slide>
+    </ion-slide-box>
+    
+</ion-content>
+   
+</ion-view>

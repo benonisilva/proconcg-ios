@@ -1,0 +1,22 @@
+<ion-view view-title="Seus Direitos">
+    <ion-content>
+    
+    <ion-list>
+        <div ng-repeat="group in vm.grupos" class="padding text-center">
+            <ion-item class="item-stable"
+                ng-click="vm.toggleGroup(group)"
+                ng-class="{active: vm.isGroupShown(group)}">
+            <i class="icon" ng-class="vm.isGroupShown(group) ? 'ion-minus' : 'ion-plus'"></i>
+                 {{group.nome}}
+            </ion-item>
+            <ion-item class="item-accordion"              
+                ng-show="vm.isGroupShown(group)">
+                <div class="card item-text-wrap">
+                    {{group.item}}
+                </div>
+            </ion-item>
+        </div>
+    </ion-list>
+   
+    </ion-content>
+</ion-view>

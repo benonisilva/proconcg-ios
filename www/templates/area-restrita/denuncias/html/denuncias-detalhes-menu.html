@@ -1,0 +1,19 @@
+<ion-view view-title="Denúncia" cache-view="false">
+    <ion-content>
+        <div class="tabs tabs-dark tabs-icon-top static" >
+            <a ui-sref="app.denuncia-historico" class="tab-item">
+                <i class="icon ion-chatbox"></i> Mensagens  <ion-badge item-left>{{vm.fato.Historico.length}}</ion-badge>
+            </a>
+            <a ui-sref="app.denuncia-imagens({fatoId:vm.fato.FatoId})" class="tab-item">
+                <i class="icon ion-images"></i> Imagens
+            </a>
+        </div>
+         <div class="item card-item">
+             <div class="item item-text-wrap">
+                 <strong>Empresa: </strong> {{vm.fato.Empresa.NomeFantasia}}
+                 <br />   
+                 <strong>Ocorrido: </strong> {{vm.fato.Descricao}}
+             </div>
+         </div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,14 @@
+<ion-view view-title="Trocar Senha">
+    <ion-content class="has-header">
+        <div class="col col-center">
+           <p class="text-center">Recuperar Senha</p>
+           <form name="vm.formUser" novalidate on-valid-submit="vm.trocarSenha(vm.email)">    
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">*Email</span>
+                    <input placeholder="*Seu Email de Cadastrado" name="email" type="email" ng-model="vm.email" required>
+                </label>
+                <button  class="button button-block button-calm-900" >Recuperar Senha</button>
+           </form>
+        </div>       
+    </ion-content>
+</ion-view>

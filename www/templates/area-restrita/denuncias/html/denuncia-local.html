@@ -1,0 +1,30 @@
+<ion-view title="Não Enviadas" cache-view="false">
+    <ion-content>
+       
+       	<div class="row item-divider">
+                    <spam class="col" style="text-align: center;">Envie sua Denúncia</spam>
+                </div>
+                <div class="row header">
+                  <div class="col">Empresa</div>
+                  <div class="col">Tipo</div>
+                  <div class="col">Data</div>
+                  <div class="col"></div>
+                </div>
+                <div class="row" ng-repeat="denuncia in vm.denunciasLocal" ui-sref="app.add-denuncia({Id:denuncia.Id})">
+                    <div class="col">
+                        {{ denuncia.Empresa.NomeFantasia }}
+                    </div>
+                    <div class="col">
+                        <p>{{ vm.tipos[denuncia.TipoFatoId-1].name }}</p>
+                    </div>
+                    <div class="col">
+                        {{ denuncia.Data | date : 'dd-MM-yy' }}
+                    </div>
+                    <div class="col">
+                        <button class="button button-small button-positive">
+                         >
+                        </button>
+                    </div>
+                </div>
+    </ion-content>
+</ion-view>

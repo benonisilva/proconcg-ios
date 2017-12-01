@@ -1,0 +1,184 @@
+<ion-view view-title="Enviar Denúncia/Reclamação" cache-view="false">
+  <ion-content class="has-subheader">
+  <form name="vm.form" novalidate on-valid-submit="vm.enviarDenuncia()" style="margin-top:0"> 
+    <ion-slide-box on-slide-changed="vm.slideChanged(index)" active-slide="vm.myActiveSlide">
+      
+      <ion-slide> 
+          <div class="list card">
+            <div class="item item-text-wrap">
+              Informações de uso:
+            </div>
+            <div class="item item-text-wrap">
+              1) No próximo slide você colocará informações gerais sobre sua denúncia;
+            </div>
+            <div class="item item-text-wrap">
+              2) Preencha o formulário conforme pedido e prossiga para o próximo slide;
+            </div>
+            <div class="item item-text-wrap">
+              3) No slide seguinte você pode anexar fotos tiradados do seu celular;
+            </div>
+            <div class="item item-text-wrap">
+              <p>4) Finalmente: 
+              </p></br>
+               - Cheque as infomações e envia sua denúncia; </br>
+               - Caso não tenha internet no momento, salve no seu celular para posterior envio.
+            </div>
+          </div>
+        </div>            
+      </ion-slide>
+        <ion-slide>
+        <div class="card">
+         <div class="item-text-wrap row">
+            <p class="col">
+              Caso sua denúncia/reclamação exija constatação imediata, recomendamos contatar o
+            PROCONCG pelos telefones: 
+            
+            </p>
+        </div>
+            <a class="col button button-full button-positive-900" ng-href="tel: 988025525">(83) 98802-5525</a>
+            <a class="col  button button-full button-positive-900" ng-href="tel: 33429179">(83) 3342-9179</a>
+            <a class="col button button-full button-positive-900" ng-href="tel: 151">Disque Denúncia 151 </a>
+            <b class="col col-100"> Atenção: Provocar a ação de autoridade, comunicando-lhe a ocorrência de crime ou de 
+            contravenção que sabe não se ter verificado: Pena - detenção, de um a seis meses, 
+            ou multa (Art. 340 do Código Penal - Decreto Lei 2848/40: ). </b>
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <div class="list card">
+          <div class="item item-divider">Empresa</div>
+          <div class="item">
+            <span class="input-label">Nome da Empresa</span>
+            <input ng-model="vm.denuncia.Empresa.NomeFantasia" name="nome" required placeholder="Nome da Empresa" type="text">
+          </div>
+          <div class="item">
+            <span class="input-label">CNPJ</span>
+            <input ui-br-cnpj-mask ng-model="vm.denuncia.Empresa.Cnpj" placeholder="CNPJ (Opcional)" type="text">
+          </div>
+          <div class="item">
+            <span class="input-label">Inscrição Estadual</span>
+            <input ng-model="vm.denuncia.Empresa.InscricaoEstadual" placeholder="Inscricao Estadual (Opcional)" type="tel">
+          </div>
+          <div class="item">
+            <span class="input-label">Telefone</span>
+            <input ng-model="vm.denuncia.Empresa.Endereco.Telefone"  placeholder="Telefone (Opcional)" type="tel" ui-br-phone-number >
+          </div>
+        </div>
+        <br />
+        </ion-slide>
+      </ion-slide>
+      
+      <ion-slide>
+        <div style="border-bottom:none !important; background : transparent; text-align:center;">
+            <i class="fa fa-edit fa-4x" ></i>
+            <h4 class="text">Informações de Endereço</h4>
+        </div>
+        <div class="list card">
+          <div class="item item-divider">Endereço da Empresa</div>
+          <div class="item">
+            <span class="input-label">CEP</span>
+            <input ui-br-cep-mask  ng-model="vm.denuncia.Empresa.Endereco.Cep"  placeholder="CEP" type="tel">
+                 <button type="button" ng-click="vm.buscarEndereco(vm.denuncia.Empresa.Endereco.Cep)" class="icon ion-search button button-small col col-33" ng-disabled="(vm.denuncia.Empresa.Endereco.Cep===undefined)">
+                {{(user.cep===undefined) ? "" : ""}}
+              </button>
+          </div>
+          <div class="item">
+            <span class="input-label">Endereço</span>
+            <input ng-model="vm.denuncia.Empresa.Endereco.Rua"  placeholder="Endereço" type="text">
+          </div>
+          <div class="item">
+            <span class="input-label">Bairro</span>
+            <input ng-model="vm.denuncia.Empresa.Endereco.Bairro"  placeholder="Bairro" type="text">
+          </div>
+          <div class="item">
+            <span class="input-label">Número</span>
+            <input ng-model="vm.denuncia.Empresa.Endereco.Numero"  placeholder="Numero" type="text">
+          </div>
+          <div class="item">
+            <span class="input-label">Complemento</span>
+            <input ng-model="vm.denuncia.Empresa.Endereco.Complemento"  placeholder="Complemento" type="text">
+          </div>
+        </div>
+      </ion-slide>
+
+      <ion-slide >
+       <div style="border-bottom:none !important; background : transparent; text-align:center;">
+            <h4 class="text">Etapa 2</h4>
+          </div>
+        <div class="list card">
+          <div class="item item-divider">
+              Denúncia/Reclamação
+          </div>
+          <div class="item">
+            <label class="item-input item-stacked-label">
+                <span class="input-label">Denúncia</span>
+                <textarea style="min-height:200px" ng-model="vm.denuncia.Descricao" name="descricao" placeholder="Digite sua denúncia (Até 1024 caracteres). " type="text" required>
+                </textarea> 
+            </label>
+          </div>
+          <div class="item item-input item-select">
+            <label for="repeatSelect"> Tipo: </label>
+                <select name="repeatSelect" id="repeatSelect" ng-model="vm.denuncia.TipoFatoId">
+                  <option ng-repeat="option in vm.tipos" value="{{option.TipoFatoId}}">{{option.Nome}}</option>
+            </select>
+          </div>
+        </div>
+      </ion-slide>
+      <ion-slide>
+         <div style="border-bottom:none !important; background : transparent; text-align:center;">
+            <i class="fa fa-edit fa-4x"></i>
+            <h4 class="text">Etapa 3</h4>
+          </div>
+        <div class="padding text-center">
+          <span>
+            Você precisa permitir que o aplicativo acesse a sua câmera para anexar fotos como prova.
+          </span>
+          <p class="item-divider">Escolha uma das opções, se necessário, como prova: 
+            1) Album (Fotos salvas do seu celular) 2) Câmera (Você faz uma foto e salva) (Até 4 fotos).</p>
+          <button ng-click="vm.openAlbum()" class="button button-energized-900"><i class="icon ion-folder"></i>Album</button>
+          <button ng-click="vm.openCamera()" class="button button-energized-900"><i class="icon ion-camera"></i>Câmera</button>
+        </div>
+        <ion-list>
+          <ion-item ng-repeat="pic in vm.denuncia.Anexos track by $index">
+            <div class="row">
+              <div class="col col-50">
+                <img style="width: 100%; height: auto;" ng-src="{{pic}}" />
+              </div>
+              <div class="col col-50">
+                <button ng-click="vm.removePic($index)" class="button button-energized-900">Retirar</button>
+              </div>
+            </div>
+          </ion-item>
+        </ion-list>
+      </ion-slide>
+      <ion-slide> 
+        <div class="padding">
+        <h3 class="tittle">Confira os Dados</h3>
+        <p class="card">Empresa: {{vm.denuncia.Empresa.NomeFantasia}}</p>
+        <text class="card">Denuncia: {{vm.denuncia.Descricao}}</text>
+        <div class="card-item">
+         <p class="card-item">
+           <label>
+             Data do Ocorrido
+           </label>
+           <input type="date" data-date-format="DD MM YY"  placeholder="DD MM YY" ng-model="vm.denuncia.Data">
+         </p>
+        </div> 
+        <br />
+        <div class="text-center"> 
+            <button ng-click="vm.showConfirm(vm.denuncia)" class="button button-energized-900 button-border ink">Salvar</button>
+            <div ng-if="!vm.logado" class="card padding">
+              <p>
+                Sua denúncia será salva no dispositivo móvel,
+                para enviá-la é nescessário fazer seu cadastro e/ou logar-se no sistema.
+              </p>
+            </div>
+            <button ng-if="vm.logado" ng-click="vm.showConfirmEnviar(vm.denuncia)" type="submit" class="button button-energized-900 button-border icon-left ink">Enviar</button>
+        </div>
+        </div>
+      </ion-slide>
+    </ion-slide-box>
+    </form>
+    <button show="vm.slideIndex != 5" class="button button-small icon ion-chevron-right icon-accessory button-calm-900" ng-click="vm.nextSlide()">Próximo</button>
+    <button ng-show="vm.slideIndex > 0" class="button button-small icon ion-chevron-left icon-accessory button-calm-900" ng-click="vm.previousSlide()">Voltar</button>
+  </ion-content>
+</ion-view>

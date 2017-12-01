@@ -1,0 +1,30 @@
+<ion-view view-title="Denúncias" cache-view="false">
+    <ion-content ng-class="{expanded:isExpanded}" class="animate-fade-slide-in">
+        <div class="row item-divider">
+            <spam class="col" style="text-align: center; border-top: solid 1px grey;
+  background-color:lightgrey;">Denúncias Enviadas</spam>
+        </div>
+        <div class="row header">
+          <div class="col col-25">Empresa</div>
+          <div class="col col-25">Situação</div>
+          <div class="col col-25">Data</div>
+          <div class="col col-25"></div>
+        </div>
+        <div class="row item-denuncia" ng-class-odd="'item-divider'" ng-repeat="denuncia in vm.denunciasRemotas" ui-sref="app.denuncia-detalhes({denunciaId:denuncia.FatoId})">
+            <div class="col col-25">
+                {{denuncia.Empresa.NomeFantasia}}
+            </div>
+            <div class="col col-25">
+                {{denuncia.Status.Nome}}
+            </div>
+            <div class="col col-25">
+                {{ denuncia.Data | date:'dd-MM-yy' }}
+            </div>
+            <div class="col col-25">
+                <button class="button button-small button-positive">
+                    >
+                </button>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,24 @@
+<ion-view view-title="Enviar Novas Imagens"> 
+    <ion-content>
+    <div style="border-bottom:none !important; background : transparent; text-align:center;">
+            <i class="fa fa-edit fa-4x"></i>
+      </div>
+        <div class="padding text-center">
+          <p class="item-divider">Clique no icone para anexar Anexos(Até  2 fotos)</p>
+          <button ng-click="vm.openCamera()" class="button button-energized-900"><i class="icon ion-camera"></i></button>
+        </div>
+        <ion-list>
+          <ion-item ng-repeat="uri in vm.Anexos track by $index">
+            <div class="row card">
+              <div class="card-item">
+                <img style="width: 100%; height: auto;" ng-src="{{uri}}" />
+              </div>
+              <div class="col col-50">
+                <button ng-click="vm.removePic($index)" class="button button-energized-900">Retirar</button>
+              </div>
+            </div>
+          </ion-item>
+        </ion-list>
+        <button ng-click="vm.salvar(vm.id,vm.Anexos)" class="button button-calm-900 button-fab button-fab-bottom-right"><i class="ion-ios-cloud-upload-outline"></i></button>
+    </ion-content>
+</ion-view>

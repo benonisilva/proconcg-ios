@@ -1,0 +1,20 @@
+<ion-view view-title="Denúncias" cache-view="false">
+    <ion-content ng-class="{expanded:isExpanded}" class="animate-fade-slide-in">
+        <div class="row item-divider">
+            <spam class="col" style="text-align: center; border-top: solid 1px grey;
+  background-color:lightgrey;">Histórico da Denúncia</spam>
+        </div>
+        <div class="row header">
+          <div class="col col-50">Data</div>
+          <div class="col col-50">Mensagem</div>
+        </div>
+        <div class="row item-denuncia" ng-class-odd="'item-divider'" ng-repeat="historico in vm.lista">
+            <div class="col col-50">
+                {{historico.DataUltimaAlteracao}}
+            </div>
+            <div class="col col-50">
+              {{historico.Mensagem}}
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
